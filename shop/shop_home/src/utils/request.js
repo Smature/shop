@@ -3,6 +3,7 @@ import qs from 'qs'
 import {errorAlert} from "./alert";
 //设置基础路径
 const baseUrl = "/api";
+// import {store} from '../store/index'
 
 
 // 设置一个响应拦截
@@ -168,6 +169,72 @@ export const requestLogin = (data)=>{
   return axios({
     method:'post',
     url:baseUrl+'/api/userlogin',
+    data:qs.stringify(data)
+  })
+}
+
+// 设置请求头
+// axios.interceptors.request.use(config=>{
+//   console.group('本次请求路径为:'+config.url)
+//   if(config.url !== baseUrl+'/api/userlogin'){
+//     // 需要设置请求头
+//     config.headers.authorization = store.state.user.token
+//   }
+//   console.log(config);
+//   return config
+// })
+
+// 添加商品分类
+export const addCate = (data)=>{
+  // 使用FormData来处理带有文件的数据
+  var form = new FormData()
+  for(let i in data){
+    form.append(i,data[i])
+  }
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/cateadd',
+    data:form
+  })
+}
+
+// 商品分类列表
+export const getCate = (params)=>{
+  return axios({
+    method:'get',
+    url:baseUrl+'/api/catelist',
+    params,
+  })
+}
+
+// 获取分类详情
+export const oneCate = (params)=>{
+  return axios({
+    method:'get',
+    url:baseUrl+'/api/cateinfo',
+    params,
+  })
+}
+
+
+// 修改商品分类
+export const updateCate = (data)=>{
+  var form = new FormData()
+  for(let i in data){
+    form.append(i,data[i])
+  }
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/cateedit',
+    data:form,
+  })
+}
+
+// 删除商品分类
+export const delCate = (data)=>{
+  return axios({
+    method:'post',
+    url:baseUrl+'/api/catedelete',
     data:qs.stringify(data)
   })
 }

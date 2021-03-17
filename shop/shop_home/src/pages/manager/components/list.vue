@@ -64,9 +64,7 @@ export default {
               cancelButtonText: '取消',
               type: 'warning'
             }).then(() => {
-              // 发起删除菜单请求
               delManager({uid}).then(res=>{
-                  // 已经删除成功
                   successAlert(res.data.msg);
                   this.requestCount()
                   this.requestManagerList()

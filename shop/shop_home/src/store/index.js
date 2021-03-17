@@ -7,6 +7,7 @@ import actions from './actions'
 import menu from './modules/menu'
 import role from './modules/role'
 import manager from './modules/manager'
+import cate from './modules/cate'
 
 const store = new Vuex.Store({
   state,//存储数据
@@ -16,7 +17,8 @@ const store = new Vuex.Store({
   modules:{//modules中存放子模块信息
     menu,
     role,
-    manager
+    manager,
+    cate
   }
 })
 
